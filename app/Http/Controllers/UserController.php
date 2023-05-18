@@ -68,7 +68,24 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rules = [
+            'nama' => 'required',
+            'no_telp' => 'required|numeric',
+            'nip_nik' => 'required|numeric',
+            'hak_akses' => 'required',
+            'password' => 'nullable'
+        ];
+
+        if ($request->email !== User::find($id)->pluck('email')) {
+            $rules['email'] = 'required|email|unique:users';
+        }
+
+        $validated = $request->validate($rules);
+        $validated['password'] = bcrypt($request->password);
+
+        User::find($id)->update($validated);
+
+        return redirect()->back()->with('success', 'Data pengguna berhasil diubah');
     }
 
     /**
@@ -76,6 +93,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::find($id)->delete();
+
+        return redirect()->back()->with('success', 'Data pengguna berhasil dihapus');
     }
 }

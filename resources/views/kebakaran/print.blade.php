@@ -102,7 +102,7 @@
                             <tr>
                                 <td>Lampiran</td>
                                 <td>:</td>
-                                <td>{{ $kebakaran->laporan->lampiran ? '-' : '' }}</td>
+                                <td>{{ $kebakaran->laporan->lampiran ?? '-' }}</td>
                             </tr>
                             <tr>
                                 <td>Perihal</td>
@@ -125,143 +125,158 @@
 
                 {{-- ISI --}}
                 <div class="row justify-content-center" style="margin-top: 5rem">
-                    <div class="col-10">
-                        <p>Dengan hormat, <br>
-                            Bersama surat ini, kami sampaikan Laporan terjadinya Kebakaran sebgai berikut :
-                        </p>
+                    <div class="col-md-8">
+                        <table cellpadding="1" border="0" width="100%">
+                            <tr>
+                                <td>1.</td>
+                                <td>Hari / Tanggal</td>
+                                <td>:</td>
+                                <td>{{ $tanggal->translatedFormat('l, d M Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Terima Laporan Dari</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->pelapor }}</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Alamat</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->alamat }}</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Jenis yang terbakar</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->jenis }}</td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>Pemilik / Penghuni</td>
+                                <td>:</td>
+                                <td>
+                                    <ol>
+                                        @foreach ($pemilik_arr as $pemilik)
+                                            <li>{{ $pemilik }}</li>
+                                        @endforeach
+                                    </ol>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>6.</td>
+                                <td>Wilayah / Bagian yang terbakar</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->wilayah }}</td>
+                            </tr>
+                            <tr>
+                                <td>7.</td>
+                                <td>Waktu Kejadian</td>
+                                <td>:</td>
+                                <td>{{ $waktu_mulai->translatedFormat('h:i') }} wib s/d
+                                    {{ $waktu_selesai->translatedFormat('h:i') }} wib</td>
+                            </tr>
+                            <tr>
+                                <td>8.</td>
+                                <td>Hasil Penanggulangan kebakaran</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->hasil->hasil }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>a. Yang Melaksanan Tugas</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->hasil->pelaksana }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>b. Kendaraan / No. Pintu</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->hasil->kendaraan }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>c. Instansi Yang Membantu</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->hasil->instansi }}</td>
+                            </tr>
+                            <tr>
+                                <td>9.</td>
+                                <td>Asal Api</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->asal_api }}</td>
+                            </tr>
+                            <tr>
+                                <td>10.</td>
+                                <td>Satuan Pemadam Kebakaran Kembali ke Pangkalan</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->spk_kembali }}</td>
+                            </tr>
+                            <tr>
+                                <td>11.</td>
+                                <td>Taksiran Kerugian</td>
+                                <td>:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>a. Korban Manusia / Luka Bakar</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->kerugian->korban_manusia }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>b. Benda</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->kerugian->benda }}</td>
+                            </tr>
+                            <tr>
+                                <td>12.</td>
+                                <td>Keterangan</td>
+                                <td>:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>a. Anggota</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->keterangan->anggota }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>b. Armada</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->keterangan->armada }}</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>c. Respon Time</td>
+                                <td>:</td>
+                                <td>{{ $kebakaran->keterangan->respon_time }}</td>
+                            </tr>
+                        </table>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-1">1.</div>
-                            <div class="col-4">Hari / Tanggal</div>
-                            <div>:</div>
-                            <div class="col">{{ $tanggal->translatedFormat('l, d M Y') }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">2.</div>
-                            <div class="col-4">Terima Laporan Dari</div>
-                            <div>:</div>
-                            <div class="col">{{ $kebakaran->pelapor }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">3.</div>
-                            <div class="col-4">Alamat</div>
-                            <div>:</div>
-                            <div class="col">{{ $kebakaran->alamat }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">4.</div>
-                            <div class="col-4">Jenis yang terbakar</div>
-                            <div>:</div>
-                            <div class="col">{{ $kebakaran->jenis }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">5.</div>
-                            <div class="col-4">Pemilik / Penghuni</div>
-                            <div>:</div>
-                            <div class="col">
-                                <ol>
-                                    @foreach ($pemilik_arr as $pemilik)
-                                        <li>{{ $pemilik }}</li>
-                                    @endforeach
-                                </ol>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">6.</div>
-                            <div class="col-4">Wilayah / Bagian yang terbakar</div>
-                            <div>:</div>
-                            <div class="col">{{ $kebakaran->jenis }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">7.</div>
-                            <div class="col-4">Waktu Kejadian</div>
-                            <div>:</div>
-                            <div class="col">{{ $waktu_mulai->translatedFormat('h:i') }} wib s/d
-                                {{ $waktu_selesai->translatedFormat('h:i') }}
-                                wib</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">8.</div>
-                            <div class="col-4">Hasil Penanggulangan Kebakaran</div>
-                            <div>:</div>
-                            <div class="col">{{ $kebakaran->hasil }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">9.</div>
-                            <div class="col-4">Asal Api</div>
-                            <div>:</div>
-                            <div class="col">{{ $kebakaran->hasil }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">10.</div>
-                            <div class="col-4">Satuan Pemadam Kebakaran kembali ke Pangkalan</div>
-                            <div>:</div>
-                            <div class="col">Pukul {{ $kebakaran->spk_kembali }} wib</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">11.</div>
-                            <div class="col-4">Taksiran Kerugian
-                                <div class="row">
-                                    <div class="col-1">1.</div>
-                                    <div class="col-4">Korban Manusia / Luka Bakar</div>
-                                    <div>:</div>
-                                    <div class="col">{{ $kebakaran->kerugian->korban_manusia }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1">2.</div>
-                                    <div class="col-4">Benda</div>
-                                    <div>:</div>
-                                    <div class="col">{{ $kebakaran->kerugian->benda }}</div>
-                                </div>
-                            </div>
-                            <div>:</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">12.</div>
-                            <div class="col-4">Keterangan
-                                <div class="row">
-                                    <div class="col-1">1.</div>
-                                    <div class="col-4">Anggota</div>
-                                    <div>:</div>
-                                    <div class="col">{{ $kebakaran->keterangan->anggota }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1">2.</div>
-                                    <div class="col-4">Armada</div>
-                                    <div>:</div>
-                                    <div class="col">{{ $kebakaran->keterangan->armada }}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1">3.</div>
-                                    <div class="col-4">Respon Time</div>
-                                    <div>:</div>
-                                    <div class="col">{{ $kebakaran->keterangan->respon_time }} wib</div>
-                                </div>
-                            </div>
-                            <div>:</div>
-                        </div>
 
-                        <p class="mt-5">Demikian laporan ini disampaikan kepada Bapak, atas perhatiannya terimakasih.
-                        </p>
+                    <p class="my-5">Demikian laporan ini disampaikan kepada Bapak, atas perhatiannya terimakasih.
+                    </p>
 
-                        <div class="row">
-                            <div class="col">
-                                <div class="ttd">
-                                    <h4 class="ttd-h4">
-                                        KEPALA DINAS
-                                        PEMADAM KEBAKARAN DAN
-                                        PENYELAMATAN KOTA
-                                        BENGKULU
-                                    </h4>
-                                    <br><br><br>
-                                    <h4 class="ttd-h4 nama">YULIANSYAH, SE., MM</h4>
-                                    <label for="" class="nip">Nip. 197206051993031006</label>
-                                </div>
+                    <div class="row" style="margin-top: 5rem">
+                        <div class="col">
+                            <div class="ttd">
+                                <h4 class="ttd-h4">
+                                    KEPALA DINAS
+                                    PEMADAM KEBAKARAN DAN
+                                    PENYELAMATAN KOTA
+                                    BENGKULU
+                                </h4>
+                                <br><br><br>
+                                <h4 class="ttd-h4 nama">YULIANSYAH, SE., MM</h4>
+                                <label for="" class="nip">Nip. 197206051993031006</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 

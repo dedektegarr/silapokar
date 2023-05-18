@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('spk_kembali');
             $table->string('jenis');
             $table->string('pemilik');
-            $table->text('hasil');
             $table->date('tanggal');
             $table->datetime('waktu_mulai');
             $table->datetime('waktu_selesai');

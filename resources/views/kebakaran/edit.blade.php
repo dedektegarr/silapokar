@@ -100,11 +100,41 @@
                                 <div class="form-group">
                                     <label for="hasil">Hasil</label>
                                     <textarea name="hasil" id="hasil" rows="3" class="form-control @error('hasil') is-invalid @enderror"
-                                        placeholder="Hasil penanggulangan kebakaran">{{ old('hasil', $kebakaran->hasil) }}</textarea>
+                                        placeholder="Hasil penanggulangan kebakaran">{{ old('hasil', $kebakaran->hasil->hasil) }}</textarea>
                                     @error('hasil')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div>
+                                    <ol>
+                                        <li class="mb-3">
+                                            <label for="pelaksana">Yang Melaksanakan Tugas</label>
+                                            <textarea name="pelaksana" id="pelaksana" rows="2" class="form-control @error('pelaksana') is-invalid @enderror"
+                                                placeholder="Pelaksana">{{ old('pelaksana', $kebakaran->hasil->pelaksana) }}</textarea>
+                                            @error('pelaksana')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </li>
+                                        <li class="mb-3">
+                                            <label for="kendaraan">Kendaraan / No. Pintu</label>
+                                            <textarea name="kendaraan" id="kendaraan" rows="2"
+                                                class="form-control @error('kendaraan') is-invalid @enderror" placeholder="Kendaraan">{{ old('kendaraan', $kebakaran->hasil->kendaraan) }}</textarea>
+                                            @error('kendaraan')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </li>
+                                        <li class="mb-3">
+                                            <label for="">Instansi Yang Membantu</label>
+                                            <textarea name="instansi" id="instansi" rows="2"
+                                                class="form-control @error('instansi') is-invalid @enderror" placeholder="Instansi">{{ old('instansi', $kebakaran->hasil->instansi) }}</textarea>
+                                            @error('respon_time')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="spk_kembali">SPK Kembali</label>
                                     <input type="time" class="form-control @error('spk_kembali') is-invalid @enderror"
@@ -113,8 +143,6 @@
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
-                            </div>
-                            <div class="col">
                                 <div>
                                     <label for="">Taksiran Kerugian</label>
                                     <ul>

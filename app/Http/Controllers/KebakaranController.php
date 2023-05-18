@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hasil;
 use App\Models\Kebakaran;
 use App\Models\Kerugian;
 use App\Models\Keterangan;
@@ -51,7 +52,10 @@ class KebakaranController extends Controller
             'anggota' => 'required',
             'armada' => 'required',
             'respon_time' => 'required',
-            'spk_kembali' => 'required'
+            'spk_kembali' => 'required',
+            'pelaksana' => 'required',
+            'kendaraan' => 'required',
+            'instansi' => 'nullable'
         ]);
 
         $stored = Kebakaran::create($validated);
@@ -69,6 +73,14 @@ class KebakaranController extends Controller
                 'anggota' => $request->anggota,
                 'armada' => $request->armada,
                 'respon_time' => $request->respon_time,
+            ]);
+
+            Hasil::create([
+                'id_kebakaran' => $id_kebakaran,
+                'hasil' => $request->hasil,
+                'pelaksana' => $request->pelaksana,
+                'kendaraan' => $request->kendaraan,
+                'instansi' => $request->instansi
             ]);
 
             return redirect()->route('kebakaran.index')->with('success', 'Data kebakaran berhasil ditambah');
@@ -118,7 +130,10 @@ class KebakaranController extends Controller
             'anggota' => 'required',
             'armada' => 'required',
             'respon_time' => 'required',
-            'spk_kembali' => 'required'
+            'spk_kembali' => 'required',
+            'pelaksana' => 'required',
+            'kendaraan' => 'required',
+            'instansi' => 'nullable'
         ]);
 
         $token_method = ['_token', '_method'];
@@ -131,16 +146,24 @@ class KebakaranController extends Controller
             'armada' => $request->armada,
             'respon_time' => $request->respon_time
         ];
+        $hasil_input = [
+            'hasil' => $request->hasil,
+            'pelaksana' => $request->pelaksana,
+            'kendaraan' => $request->kendaraan,
+            'instansi' => $request->instansi
+        ];
 
 
         $id_kerugian = $kebakaran->kerugian->id;
         $id_keterangan = $kebakaran->keterangan->id;
+        $id_hasil = $kebakaran->hasil->id;
 
         Kebakaran::find($kebakaran->id)->update($request->except(
             array_merge($token_method, $kerugian_input, $keterangan_input)
         ));
         Kerugian::find($id_kerugian)->update($kerugian_input);
         Keterangan::find($id_keterangan)->update($keterangan_input);
+        Hasil::find($id_hasil)->update($hasil_input);
 
         return redirect()->route('kebakaran.index')->with('success', 'Data kebakaran berhasil diubah');
     }

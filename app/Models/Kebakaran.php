@@ -27,4 +27,9 @@ class Kebakaran extends Model
     {
         return $this->hasOne(Laporan::class, 'id_kebakaran');
     }
+
+    public function hasil()
+    {
+        return $this->hasOne(Hasil::class, 'id_kebakaran');
+    }
 }

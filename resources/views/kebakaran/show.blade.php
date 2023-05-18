@@ -40,31 +40,31 @@
                             <td>1.</td>
                             <td>Hari / Tanggal</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $tanggal->translatedFormat('l, d M Y') }}</td>
+                            <td>{{ $tanggal->translatedFormat('l, d M Y') }}</td>
                         </tr>
                         <tr>
                             <td>2.</td>
                             <td>Terima Laporan Dari</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $kebakaran->pelapor }}</td>
+                            <td>{{ $kebakaran->pelapor }}</td>
                         </tr>
                         <tr>
                             <td>3.</td>
                             <td>Alamat</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $kebakaran->alamat }}</td>
+                            <td>{{ $kebakaran->alamat }}</td>
                         </tr>
                         <tr>
                             <td>4.</td>
                             <td>Jenis yang terbakar</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $kebakaran->jenis }}</td>
+                            <td>{{ $kebakaran->jenis }}</td>
                         </tr>
                         <tr>
                             <td>5.</td>
                             <td>Pemilik / Penghuni</td>
                             <td>:</td>
-                            <td class="text-bold">
+                            <td>
                                 <ol>
                                     @foreach ($pemilik_arr as $pemilik)
                                         <li>{{ $pemilik }}</li>
@@ -76,76 +76,90 @@
                             <td>6.</td>
                             <td>Wilayah / Bagian yang terbakar</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $kebakaran->wilayah }}</td>
+                            <td>{{ $kebakaran->wilayah }}</td>
                         </tr>
                         <tr>
                             <td>7.</td>
                             <td>Waktu Kejadian</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $waktu_mulai->translatedFormat('h:i') }} wib s/d
+                            <td>{{ $waktu_mulai->translatedFormat('h:i') }} wib s/d
                                 {{ $waktu_selesai->translatedFormat('h:i') }} wib</td>
                         </tr>
                         <tr>
                             <td>8.</td>
-                            <td>Hasil Penanggulangan Kebakaran</td>
+                            <td>Hasil Penanggulangan kebakaran</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $kebakaran->hasil }}</td>
+                            <td>{{ $kebakaran->hasil->hasil }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>a. Yang Melaksanan Tugas</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->hasil->pelaksana }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>b. Kendaraan / No. Pintu</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->hasil->kendaraan }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>c. Instansi Yang Membantu</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->hasil->instansi }}</td>
                         </tr>
                         <tr>
                             <td>9.</td>
                             <td>Asal Api</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $kebakaran->asal_api }}</td>
+                            <td>{{ $kebakaran->asal_api }}</td>
                         </tr>
                         <tr>
                             <td>10.</td>
                             <td>Satuan Pemadam Kebakaran Kembali ke Pangkalan</td>
                             <td>:</td>
-                            <td class="text-bold">{{ $kebakaran->spk_kembali }}</td>
+                            <td>{{ $kebakaran->spk_kembali }}</td>
                         </tr>
                         <tr>
                             <td>11.</td>
-                            <td>Taksiran Kerugian
-                                <table cellpadding="10">
-                                    <tr>
-                                        <td>Korban Manusia / Luka Bakar</td>
-                                        <td>:</td>
-                                        <td class="text-bold">{{ $kebakaran->kerugian->korban_manusia }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Benda</td>
-                                        <td>:</td>
-                                        <td class="text-bold">{{ $kebakaran->kerugian->benda }}</td>
-                                    </tr>
-                                </table>
-                            </td>
+                            <td>Taksiran Kerugian</td>
                             <td>:</td>
-                            <td>
-
-                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>a. Korban Manusia / Luka Bakar</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->kerugian->korban_manusia }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>b. Benda</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->kerugian->benda }}</td>
                         </tr>
                         <tr>
                             <td>12.</td>
-                            <td>Keterangan
-                                <table cellpadding="10">
-                                    <tr>
-                                        <td>Anggota</td>
-                                        <td>:</td>
-                                        <td class="text-bold">{{ $kebakaran->keterangan->anggota }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Armada</td>
-                                        <td>:</td>
-                                        <td class="text-bold">{{ $kebakaran->keterangan->armada }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Respon Time</td>
-                                        <td>:</td>
-                                        <td class="text-bold">{{ $kebakaran->keterangan->respon_time }}</td>
-                                    </tr>
-                                </table>
-                            </td>
+                            <td>Keterangan</td>
                             <td>:</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>a. Anggota</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->keterangan->anggota }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>b. Armada</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->keterangan->armada }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>c. Respon Time</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->keterangan->respon_time }}</td>
                         </tr>
                     </table>
                 </div>

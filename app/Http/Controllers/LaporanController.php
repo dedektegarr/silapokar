@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kebakaran;
 use App\Models\Laporan;
 use App\Models\Penyelamatan;
+use App\Models\Time;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class LaporanController extends Controller
             'id_kebakaran' => 'required',
             'nomor' => 'required',
             'sifat' => 'required',
-            'lampiran' => 'required',
+            'lampiran' => 'nullable',
             'perihal' => 'required'
         ]);
 
@@ -45,7 +46,9 @@ class LaporanController extends Controller
     {
         return view('laporan.kebakaran', [
             'page_title' => 'Laporan Kebakaran',
-            'data_laporan' => Laporan::orderByDesc('created_at')->get()
+            'bulan' => Time::bulan(),
+            'tahun' => Time::tahun(),
+            'data_laporan' => Laporan::filter()->orderByDesc('created_at')->get()
         ]);
     }
 

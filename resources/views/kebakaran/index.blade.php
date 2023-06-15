@@ -10,6 +10,7 @@
                 </div>
                 <div class="card-body">
                     <a href="{{ route('kebakaran.create') }}" class="btn btn-primary btn-sm mb-4">Tambah Data</a>
+
                     <table class="table" id="table">
                         <thead class="bg-dark">
                             <tr>
@@ -28,7 +29,7 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $loop->iteration }}.</td>
-                                    <td>{{ $kebakaran->pelapor }}</td>
+                                    <td>{{ $kebakaran->pelapor ?? '-' }}</td>
                                     <td>{{ $kebakaran->alamat }}</td>
                                     <td>{{ $kebakaran->jenis }}</td>
                                     <td>{{ $date->translatedFormat('d M Y') }}</td>

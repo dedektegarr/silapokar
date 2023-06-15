@@ -39,7 +39,7 @@ class PenyelamatanController extends Controller
             'waktu' => 'required',
             'lokasi' => 'required|max:255',
             'jenis' => 'required|max:255',
-            'pelapor' => 'required|max:255',
+            'pelapor' => 'nullable|max:255',
             'armada' => 'required|max:255',
             'anggota' => 'required|max:255',
             'foto' => 'required|image|mimes:jpg,png'
@@ -80,7 +80,7 @@ class PenyelamatanController extends Controller
             'waktu' => 'required',
             'lokasi' => 'required|max:255',
             'jenis' => 'required|max:255',
-            'pelapor' => 'required|max:255',
+            'pelapor' => 'nullable|max:255',
             'armada' => 'required|max:255',
             'anggota' => 'required|max:255',
         ]);

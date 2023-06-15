@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Hasil;
 use App\Models\Kebakaran;
+use App\Models\Kecamatan;
 use App\Models\Kerugian;
 use App\Models\Keterangan;
+use App\Models\Time;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class KebakaranController extends Controller
 {
@@ -28,6 +31,7 @@ class KebakaranController extends Controller
     {
         return view('kebakaran.tambah', [
             'page_title' => 'Tambah Data Kebakaran',
+            'kecamatan' => Kecamatan::all()
         ]);
     }
 
@@ -38,8 +42,10 @@ class KebakaranController extends Controller
     {
         $validated = $request->validate([
             'tanggal' => 'required|date',
-            'pelapor' => 'required',
+            'pelapor' => 'nullable',
             'jenis' => 'required',
+            'id_kecamatan' => 'required',
+            'id_kelurahan' => 'required',
             'pemilik' => 'required',
             'wilayah' => 'required',
             'waktu_mulai' => 'required|date',
@@ -116,8 +122,10 @@ class KebakaranController extends Controller
     {
         $request->validate([
             'tanggal' => 'required|date',
-            'pelapor' => 'required',
+            'pelapor' => 'nullable',
             'jenis' => 'required',
+            'id_kecamatan' => 'required',
+            'id_kelurahan' => 'required',
             'pemilik' => 'required',
             'wilayah' => 'required',
             'waktu_mulai' => 'required|date',

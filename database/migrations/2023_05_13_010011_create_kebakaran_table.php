@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kebakaran', function (Blueprint $table) {
             $table->id();
-            $table->string('pelapor');
+            $table->string('pelapor')->nullable();
             $table->text('alamat');
             $table->string('asal_api');
             $table->string('spk_kembali');

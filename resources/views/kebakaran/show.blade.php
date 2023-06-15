@@ -46,22 +46,34 @@
                             <td>2.</td>
                             <td>Terima Laporan Dari</td>
                             <td>:</td>
-                            <td>{{ $kebakaran->pelapor }}</td>
+                            <td>{{ $kebakaran->pelapor ?? '-' }}</td>
                         </tr>
                         <tr>
                             <td>3.</td>
+                            <td>Kecamatan</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->kecamatan->nama }}</td>
+                        </tr>
+                        <tr>
+                            <td>4.</td>
+                            <td>Kelurahan</td>
+                            <td>:</td>
+                            <td>{{ $kebakaran->kelurahan->nama }}</td>
+                        </tr>
+                        <tr>
+                            <td>5.</td>
                             <td>Alamat</td>
                             <td>:</td>
                             <td>{{ $kebakaran->alamat }}</td>
                         </tr>
                         <tr>
-                            <td>4.</td>
+                            <td>6.</td>
                             <td>Jenis yang terbakar</td>
                             <td>:</td>
                             <td>{{ $kebakaran->jenis }}</td>
                         </tr>
                         <tr>
-                            <td>5.</td>
+                            <td>7.</td>
                             <td>Pemilik / Penghuni</td>
                             <td>:</td>
                             <td>
@@ -73,20 +85,20 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>6.</td>
+                            <td>8.</td>
                             <td>Wilayah / Bagian yang terbakar</td>
                             <td>:</td>
                             <td>{{ $kebakaran->wilayah }}</td>
                         </tr>
                         <tr>
-                            <td>7.</td>
+                            <td>9.</td>
                             <td>Waktu Kejadian</td>
                             <td>:</td>
                             <td>{{ $waktu_mulai->translatedFormat('h:i') }} wib s/d
                                 {{ $waktu_selesai->translatedFormat('h:i') }} wib</td>
                         </tr>
                         <tr>
-                            <td>8.</td>
+                            <td>10.</td>
                             <td>Hasil Penanggulangan kebakaran</td>
                             <td>:</td>
                             <td>{{ $kebakaran->hasil->hasil }}</td>
@@ -110,19 +122,19 @@
                             <td>{{ $kebakaran->hasil->instansi }}</td>
                         </tr>
                         <tr>
-                            <td>9.</td>
+                            <td>11.</td>
                             <td>Asal Api</td>
                             <td>:</td>
                             <td>{{ $kebakaran->asal_api }}</td>
                         </tr>
                         <tr>
-                            <td>10.</td>
+                            <td>12.</td>
                             <td>Satuan Pemadam Kebakaran Kembali ke Pangkalan</td>
                             <td>:</td>
                             <td>{{ $kebakaran->spk_kembali }}</td>
                         </tr>
                         <tr>
-                            <td>11.</td>
+                            <td>13.</td>
                             <td>Taksiran Kerugian</td>
                             <td>:</td>
                         </tr>
@@ -139,7 +151,7 @@
                             <td>{{ $kebakaran->kerugian->benda }}</td>
                         </tr>
                         <tr>
-                            <td>12.</td>
+                            <td>14.</td>
                             <td>Keterangan</td>
                             <td>:</td>
                         </tr>

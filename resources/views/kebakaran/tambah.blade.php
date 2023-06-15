@@ -74,12 +74,46 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="asal_api">Asal Api</label>
-                                    <input type="text" class="form-control @error('asal_api') is-invalid @enderror"
-                                        name="asal_api" placeholder="Asal Api" value="{{ old('asal_api') }}">
+                                    <select name="asal_api" id="asal_api"
+                                        class="form-control @error('asal_api') is-invalid @enderror">
+                                        <option value="Belum diketahui">Belum diketahui</option>
+                                        <option value="Konsleting listrik">Konsleting listrik</option>
+                                        <option value="Kompor gas">Kompor gas</option>
+                                    </select>
+                                    {{-- <input type="text" class="form-control @error('asal_api') is-invalid @enderror"
+                                        name="asal_api" placeholder="Asal Api" value="{{ old('asal_api') }}"> --}}
                                     @error('asal_api')
                                         <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="kecamatan">Kecamatan</label>
+                                    <select name="id_kecamatan" id="kecamatan"
+                                        class="form-control @error('id_kecamatan') is-invalid @enderror">
+                                        <option value="">Pilih Kecamatan</option>
+                                        @foreach ($kecamatan as $kec)
+                                            <option value="{{ $kec->id }}"
+                                                {{ old('id_kecamatan' == $kec->id ? 'selected' : '') }}>
+                                                {{ $kec->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_kecamatan')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="kelurahan">Kelurahan</label>
+                                    <select name="id_kelurahan" id="kelurahan"
+                                        class="form-control @error('id_kelurahan') is-invalid @enderror">
+                                        <option value="">Pilih Kelurahan</option>
+                                    </select>
+                                    @error('id_kelurahan')
+                                        <span class="invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
                                 <div class="form-group">
                                     <label for="alamat">Alamat</label>
                                     <textarea name="alamat" id="alamat" rows="3" class="form-control @error('alamat') is-invalid @enderror"
@@ -100,8 +134,8 @@
                                     <ol>
                                         <li class="mb-3">
                                             <label for="pelaksana">Yang Melaksanakan Tugas</label>
-                                            <textarea name="pelaksana" id="pelaksana" rows="2" class="form-control @error('pelaksana') is-invalid @enderror"
-                                                placeholder="Pelaksana">{{ old('pelaksana') }}</textarea>
+                                            <textarea name="pelaksana" id="pelaksana" rows="2"
+                                                class="form-control @error('pelaksana') is-invalid @enderror" placeholder="Pelaksana">{{ old('pelaksana') }}</textarea>
                                             @error('pelaksana')
                                                 <span class="invalid-feedback">{{ $message }}</span>
                                             @enderror
@@ -202,11 +236,33 @@
             </form>
         </div>
     </div>
+
+    <input type="hidden" id="APIWilayah" value="{{ env('API_WILAYAH') }}">
 @endsection
 @push('script')
     <script>
         $(document).ready(function() {
             bsCustomFileInput.init()
+        });
+
+        $('#kecamatan').on('change', function() {
+            const id = this.value;
+
+            $.ajax({
+                url: `/api/kelurahan/${id}`,
+                type: 'GET',
+                success: function(data) {
+                    // Menghapus opsi kelurahan sebelumnya
+                    $('#kelurahan').empty();
+                    $('#kelurahan').append('<option value="">Pilih Kelurahan</option>');
+
+                    // Menambahkan opsi kelurahan baru
+                    $.each(data, function(key, value) {
+                        $('#kelurahan').append(
+                            `<option value="${value.id}">${value.nama}</option>`);
+                    });
+                }
+            });
         });
 
         $('#foto').on('change', function(e) {

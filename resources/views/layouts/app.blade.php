@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('build/assets/app-9932557b.css') }}">
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini skin-green">
 
     @yield('login')
 
@@ -73,7 +73,7 @@
     </script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     @stack('script')
 </body>

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('instansi');
             $table->timestamps();
 
-            $table->foreign('id_kebakaran')->references('id')->on('kebakaran');
+            $table->foreign('id_kebakaran')->references('id')->on('kebakaran')->onDelete('cascade');
         });
     }
 

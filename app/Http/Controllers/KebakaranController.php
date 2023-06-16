@@ -111,6 +111,7 @@ class KebakaranController extends Controller
     {
         return view('kebakaran.edit', [
             'page_title' => 'Edit Data Kebakaran',
+            'kecamatan' => Kecamatan::all(),
             'kebakaran' => $kebakaran
         ]);
     }
